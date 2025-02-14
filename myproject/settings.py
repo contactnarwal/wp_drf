@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'wp'
+    
 ]
 AUTH_USER_MODEL = 'wp.User'
 REST_FRAMEWORK = {
@@ -89,7 +90,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',  # Or IP address for remote MySQL server
-        'PORT': '3306',       # Default MySQL port
+        'PORT': '3309',       # Default MySQL port
     }
 }
 

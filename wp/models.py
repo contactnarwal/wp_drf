@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 
+
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -25,7 +26,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     role = models.CharField(
@@ -55,3 +56,5 @@ class User(AbstractBaseUser, PermissionsMixin):
     def has_module_perms(self, app_label):
         """Does the user have permissions to view the app `app_label`?"""
         return True
+    
+    

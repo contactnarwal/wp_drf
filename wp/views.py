@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import RegisterSerializer, UserDetailSerializer, UserUpdateSerializer
-from rest_framework.generics import ListAPIView, RetrieveAPIView, UpdateAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, UpdateAPIView,DestroyAPIView
 from .models import User
 from rest_framework.permissions import IsAuthenticated
 from .permissions import IsAdminOrOwner
@@ -26,4 +26,11 @@ class UserUpdateView(UpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserUpdateSerializer
     permission_classes = [IsAuthenticated, IsAdminOrOwner]  # Only authenticated users can update their details
-    lookup_field = 'id'  # Lookup user by ID   
+    lookup_field = 'id'  # Lookup user by ID  
+
+
+class UserDeleteView(DestroyAPIView):
+    queryset = User.objects.all()
+    lookup_field = "id"
+    permission_classes = [IsAuthenticated, IsAdminOrOwner]
+

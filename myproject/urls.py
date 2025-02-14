@@ -16,8 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponse
+
+# def homepage(request):
+#     return HttpResponse("Welcome to my Django project!")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('wp.urls')),
+    #  path('', homepage, name='homepage'),
+      path('', include('wp.urls')) 
 ]
