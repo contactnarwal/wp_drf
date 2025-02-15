@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import User  # Assuming you have a custom user model
+from django.contrib.auth import authenticate
+from .models import User  
 from django.contrib.auth import get_user_model
 #create operation on user module 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -19,6 +20,21 @@ class RegisterSerializer(serializers.ModelSerializer):
             role = role,
         )
         return user
+    
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(required=True, write_only=True)
+
+    # def validate(self, data):
+    #     UserModel = get_user_model()
+    #     user = UserModel.objects.filter(email=data['email']).first()
+    #     if not user or not user.check_password(data['password']):
+    #         raise serializers.ValidationError("Invalid email or password")
+    #     return {"email": user.email, "message": "Login successful"}
+
+
+
     #Read operation on user module 
 class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
